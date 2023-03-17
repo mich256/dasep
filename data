@@ -7,3 +7,17 @@
 | 4u3+16u2t+13ut2+t3+12u2+30ut+9t2+21u+3t-13 |
 | 2u3+9u2t+9ut2+13u2+27ut+20u                |
 | 4u3+8u2t+5ut2-t3+20u2+30ut-9t2+29u-3t+13   |
+
+i3 : sub(f,u=>t)
+
+        4      3      2
+o3 = 15t  + 52t  + 74t  + 52t + 15
+
+o3 : R
+
+i4 : factor oo
+
+            2    2
+o4 = (t + 1) (15t  + 22t + 15)
+
+o4 : Expression of class Product
