@@ -20,3 +20,21 @@ for i from 0 to 6 do (
     );
 print(v)
     
+N = matrix{
+    {-1-2*u-t,1+t,0,0,1,0,0,1},
+    {1+t,-1-2*u-t,0,0,0,1,1,0},
+    {0,0,-3-t,1+t,u,0,0,u},
+    {0,0,1+t,-3-t,0,u,u,0},
+    {u,0,1,0,-2-u-t,1+t,0,0},
+    {0,u,0,1,1+t,-3-u-2*t,1+t,0},
+    {0,u,0,1,0,1+t,-3-u-2*t,1+t},
+    {u,0,1,0,0,0,1+t,-2-u-t}};
+
+w = gens ker(N);
+w = mutableMatrix(w);
+print(w);
+r = 0;
+for i from 0 to 7 do (
+    r = r + w_(i,1);
+    )
+print(toString(factor r))
