@@ -133,7 +133,18 @@ m_(4*k-2,4*k-2)=-2-u-2*t;
 matrix(m)
 );
 
-for i from 4 to 4 do (
+for i from 2 to 10 do (
 M = markovMatrix(2*i);
 v = gens ker(M);
+v = flatten(entries(v));
+v = v // gcd(v);
+print(2*i, #terms(sum v));
+);
+
+for i from 2 to 10 do (
+M = markovMatrix(2*i+1);
+v = gens ker(M);
+v = flatten(entries(v));
+v = v // gcd(v);
+print(2*i+1, #terms(sum v));
 );
