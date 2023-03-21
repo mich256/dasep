@@ -79,8 +79,8 @@ for i from 1 to k-2 do (
     );
 
 m_(k-2,k-1)=2*(1+t);
-m_(3*k-1,k-1)=u;
-m_(k-1,k-1)=-2-u-2*t;
+m_(3*k-1,k-1)=2*u;
+m_(k-1,k-1)=-2-2*u-2*t;
 
 m_(k,k)=-3-t;
 m_(k+1,k)=1+t;
@@ -96,9 +96,8 @@ for i from k+1 to 2*k-2 do (
     );
 
 m_(2*k-2,2*k-1)=2*(1+t);
-m_(3*k-1,2*k-1)=1;
-m_(2*k-1,2*k-1)=-3-2*t;
-
+m_(3*k-1,2*k-1)=2;
+m_(2*k-1,2*k-1)=-4-2*t;
 
 m_(2*k+1,2*k)=1+t;
 m_(4*k-2,2*k)=1;
@@ -134,13 +133,7 @@ m_(4*k-2,4*k-2)=-2-u-2*t;
 matrix(m)
 );
 
-for i from 4 to 10 do (
-M = markovMatrix(i);
-print(rank M);
+for i from 4 to 4 do (
+M = markovMatrix(2*i);
 v = gens ker(M);
-v = v // gcd((entries v)#0);
-s = 0;
-for i from 0 to numRows(M)-1 do (
-    s = s + v_(i,0);
-    );
 );
