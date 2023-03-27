@@ -114,9 +114,9 @@ for i from 2*k+1 to 3*k-2 do (
     );
 m_(3*k-2,3*k-1)=1+t;
 m_(3*k,3*k-1)=1+t;
-m_(k-1,3*k-1)=2;
-m_(2*k-1,3*k-1)=2*u;
-m_(3*k-1,3*k-1)=-4-2*u-2*t;
+m_(k-1,3*k-1)=1;
+m_(2*k-1,3*k-1)=u;
+m_(3*k-1,3*k-1)=-3-u-2*t;
 for i from 3*k to 4*k-3 do (
     m_(i-1,i)=1+t;
     m_(i+1,i)=1+t;
@@ -133,6 +133,16 @@ m_(4*k-2,4*k-2)=-2-u-2*t;
 matrix(m)
 );
 
+<<<<<<< HEAD
+for i from 4 to 6 do (
+M = markovMatrix(i);
+v = gens ker(M);
+print(-v);
+--p = sum(entries(-v));
+--p = p#0;
+--print((2*i+1)*sub(p,{u=>1,t=>1}));
+--print(#terms(p));
+=======
 for i from 2 to 10 do (
 M = markovMatrix(2*i);
 v = gens ker(M);
@@ -147,4 +157,5 @@ v = gens ker(M);
 v = flatten(entries(v));
 v = v // gcd(v);
 print(2*i+1, #terms(sum v));
+>>>>>>> 2b26008357b13e322c152197f62d87e28d847ded
 );
