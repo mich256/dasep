@@ -147,3 +147,11 @@ for i from 0 to numRows(v)-1 do (
 --print((2*i+1)*sub(p,{u=>1,t=>1}));
 --print(#terms(p));
 );
+
+for i from 2 to 6 do (
+    M = markovMatrix(2*i+1);
+    v = gens ker M;
+    p = sum(entries(-v));
+    p = p#0;
+    print((2*i+1)*sub(p,{u=>1,t=>1}));
+    );
