@@ -134,10 +134,14 @@ matrix(m)
 );
 
 
-for i from 6 to 6 do (
+for i from 4 to 9 do (
 M = markovMatrix(i);
 v = gens ker(M);
-print(-v//2);
+for i from 0 to numRows(v)-1 do (
+    << quotientRemainder(v_(i,0),v_(0,0)) << endl;
+    );
+<< v//v_(0,0) << endl;
+
 --p = sum(entries(-v));
 --p = p#0;
 --print((2*i+1)*sub(p,{u=>1,t=>1}));
