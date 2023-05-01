@@ -148,6 +148,7 @@ for i from 0 to numRows(v)-1 do (
 --print(#terms(p));
 );
 
+
 for i from 4 to 5 do (
     M = markovMatrix(i);
     v = gens ker M;
@@ -155,4 +156,12 @@ for i from 4 to 5 do (
     --p = sum(entries(-v));
     --p = p#0;
     --print((2*i+1)*sub(p,{u=>1,t=>1}));
+    );
+
+for i from 2 to 6 do (
+    M = markovMatrix(2*i);
+    v = gens ker M;
+    p = sum(entries(-v));
+    p = p#0;
+    print(sub(p,{u=>1,t=>1}));
     );
