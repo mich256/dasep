@@ -23,6 +23,13 @@ class DASEP:
             ab += 1
         return eqt,vrb
 
+    def steady(self):
+        eqt, vrb = self.system()
+        return solve(eqt,vrb)
+
+    def first(self):
+        return self.steady()[0]
+
 class State():
     def __init__(self,dasep,word):
         self.vrb = var("x_{}".format(word))
@@ -71,4 +78,3 @@ class State():
 
     def balance(self):
         return [self.outdegree() == self.indegree()]
-    
