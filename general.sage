@@ -15,11 +15,20 @@ class DASEP:
         while ab < self.p*self.q+1:
             for par in Partitions(ab,length=self.q,max_part=self.p):
                 par = par+[0]*(self.n-self.q)
+                pw = ''.join(map(str,par))
+                pv = State(self,pw).vrb
+                i = 1
                 for word in Permutations_mset(par):
                     word = ''.join(map(str,word))
                     state = State(self,word)
                     eqt.append(state.balance())
                     vrb.append(state.vrb)
+                while i < self.n:
+                    par.append(par.pop(0))
+                    word = ''.join(map(str,par))
+                    v = State(self,word).vrb
+                    eqt.append(pv == v)
+                    i += 1
             ab += 1
         return eqt,vrb
 
@@ -28,7 +37,8 @@ class DASEP:
         return solve(eqt,vrb)
 
     def first(self):
-        return self.steady()[0]
+        S = self.steady()
+        return S[0][binomial(self.n,self.q)].rhs().denominator()
 
 class State():
     def __init__(self,dasep,word):
@@ -57,7 +67,6 @@ class State():
         s = 0
         i = -1
         w = self.word
-        
         while i < len(w)-1:
             if int(w[i]) < int(w[i+1]):
                 if i != -1:
@@ -70,11 +79,17 @@ class State():
                 else:
                     s += State(self.dasep, w[-1]+w[1:-1]+w[0]).vrb
             if int(w[i]) > 0 and int(w[i]) < self.dasep.p:
-                s += State(self.dasep, w[0:i]+str(int(w[i])+1)+w[i+1:]).vrb
+                if i != -1:
+                    s += State(self.dasep, w[0:i]+str(int(w[i])+1)+w[i+1:]).vrb
+                else:
+                    s += State(self.dasep, w[0:i]+str(int(w[i])+1)).vrb
             if int(w[i]) > 1:
-                s += u*State(self.dasep, w[0:i]+str(int(w[i])-1)+w[i+1:]).vrb
+                if i != -1:
+                    s += u*State(self.dasep, w[0:i]+str(int(w[i])-1)+w[i+1:]).vrb
+                else:
+                    s += u*State(self.dasep, w[0:i]+str(int(w[i])-1)).vrb
             i += 1
         return s
 
     def balance(self):
-        return [self.outdegree() == self.indegree()]
+        return self.outdegree() == self.indegree()
