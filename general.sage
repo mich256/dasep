@@ -92,3 +92,32 @@ class State():
 
     def balance(self):
         return self.outdegree() == self.indegree()
+
+
+def n23():
+    n = 4
+    l = []
+    while n < 6:
+        M = DASEP(n,2,3)
+        l.append(M.first())
+        n += 1
+    return l
+
+def n32():
+    n = 3
+    l = []
+    while n < 6:
+        M = DASEP(n,3,2)
+        l.append(M.first())
+        n += 1
+    return l
+
+def p42():
+    p = 2
+    l = []
+    while p < 6:
+        M = DASEP(4,p,2)
+        l.append(M.first())
+        p += 1
+    return l
+    
