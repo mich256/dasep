@@ -15,20 +15,19 @@ class DASEP:
         while ab < self.p*self.q+1:
             for par in Partitions(ab,length=self.q,max_part=self.p):
                 par = par+[0]*(self.n-self.q)
-                pw = ''.join(map(str,par))
-                pv = State(self,pw).vrb
-                i = 1
-                for word in Permutations_mset(par):
-                    word = ''.join(map(str,word))
-                    state = State(self,word)
+                for word in CyclicPermutations(par):
+                    w1 = ''.join(map(str,word))
+                    state = State(self,w1)
                     eqt.append(state.balance())
                     vrb.append(state.vrb)
-                while i < self.n:
-                    par.append(par.pop(0))
-                    word = ''.join(map(str,par))
-                    v = State(self,word).vrb
-                    eqt.append(pv == v)
-                    i += 1
+                    i = 1
+                    while i < self.n:
+                        word.append(word.pop(0))
+                        w2 = ''.join(map(str,word))
+                        v = State(self,w2).vrb
+                        eqt.append(state.vrb == v)
+                        vrb.append(v)
+                        i += 1
             ab += 1
         return eqt,vrb
 
