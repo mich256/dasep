@@ -1,6 +1,6 @@
 from sage.combinat.permutation import Permutations_mset
 
-t,u = var('t,u')
+u, t = var('u, t')
 
 class DASEP:
     def __init__(self,lattice,notype,noparticles):
@@ -120,4 +120,22 @@ def p42():
         l.append(M.first())
         p += 1
     return l
-    
+
+def infFams1st():
+    with open("first.txt", "w") as f:
+        f.write("n23\n")
+        f.write("\n".join(str(item) for item in n23()))
+        f.write("\n"+"n32\n")
+        f.write("\n".join(str(item) for item in n32()))
+        f.write("\n"+"4p2\n")
+        f.write("\n".join(str(item) for item in p42()))
+    return
+
+def degOu():
+    with open("degree.txt","w") as f:
+        f.write('\n'+'n23\n')
+        f.write('\n'.join(str(item.degree(u)) for item in n23()))
+        f.write("\n"+"n32\n")
+        f.write("\n".join(str(item.degree(u)) for item in n32()))
+        f.write("\n"+"4p2\n")
+        f.write("\n".join(str(item.degree(u)) for item in p42()))
