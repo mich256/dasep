@@ -101,22 +101,41 @@ def n23():
         n += 1
     return l
 
-def n32():
-    n = 3
+def n24():
+    n = 5
     l = []
     while n < 7:
-        M = DASEP(n,3,2)
+        M = DASEP(n,2,4)
         l.append(M.first())
         n += 1
     return l
 
+def n25():
+    n = 6
+    l = []
+    while n < 8:
+        M = DASEP(n,2,5)
+        l.append(M.first())
+        n += 1
+    return l
+    
+
 def p42():
     p = 2
     l = []
-    while p < 7:
+    while p < 6:
         M = DASEP(4,p,2)
         l.append(M.first())
         p += 1
+    return l
+
+def n2n1():
+    n = 3
+    l = []
+    while n < 6:
+        M = DASEP(n,2,n-1)
+        l.append(M.first())
+        n += 1
     return l
 
 def infFams1st(func):
@@ -125,6 +144,11 @@ def infFams1st(func):
         f.write("\n".join(str(item) for item in func()))
 
 def degOu(func):
-    with open("degree.txt","a") as f:
+    with open("degU.txt","a") as f:
         f.write('\n'+str(func)+'\n')
         f.write('\n'.join(str(item.degree(u)) for item in func()))
+
+def degOt(func):
+    with open("degT.txt","a") as f:
+        f.write('\n'+str(func)+'\n')
+        f.write('\n'.join(str(item.degree(t)) for item in func()))
