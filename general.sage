@@ -1,5 +1,3 @@
-from sage.combinat.permutation import Permutations_mset
-
 u, t = var('u, t')
 
 class DASEP:
@@ -97,7 +95,7 @@ class State():
 def n23():
     n = 4
     l = []
-    while n < 6:
+    while n < 7:
         M = DASEP(n,2,3)
         l.append(M.first())
         n += 1
@@ -106,7 +104,7 @@ def n23():
 def n32():
     n = 3
     l = []
-    while n < 6:
+    while n < 7:
         M = DASEP(n,3,2)
         l.append(M.first())
         n += 1
@@ -115,27 +113,18 @@ def n32():
 def p42():
     p = 2
     l = []
-    while p < 6:
+    while p < 7:
         M = DASEP(4,p,2)
         l.append(M.first())
         p += 1
     return l
 
-def infFams1st():
-    with open("first.txt", "w") as f:
-        f.write("n23\n")
-        f.write("\n".join(str(item) for item in n23()))
-        f.write("\n"+"n32\n")
-        f.write("\n".join(str(item) for item in n32()))
-        f.write("\n"+"4p2\n")
-        f.write("\n".join(str(item) for item in p42()))
-    return
+def infFams1st(func):
+    with open("first.txt", "a") as f:
+        f.write("\n"+str(func)+"\n")
+        f.write("\n".join(str(item) for item in func()))
 
-def degOu():
-    with open("degree.txt","w") as f:
-        f.write('\n'+'n23\n')
-        f.write('\n'.join(str(item.degree(u)) for item in n23()))
-        f.write("\n"+"n32\n")
-        f.write("\n".join(str(item.degree(u)) for item in n32()))
-        f.write("\n"+"4p2\n")
-        f.write("\n".join(str(item.degree(u)) for item in p42()))
+def degOu(func):
+    with open("degree.txt","a") as f:
+        f.write('\n'+str(func)+'\n')
+        f.write('\n'.join(str(item.degree(u)) for item in func()))
