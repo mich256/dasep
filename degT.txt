@@ -4,3 +4,10 @@
 3
 6
 9
+<function n23 at 0x1561afac0>
+4
+8
+12
+<function n24 at 0x1561af760>
+11
+27
