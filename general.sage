@@ -124,7 +124,7 @@ def n24():
 def p42():
     p = 2
     l = []
-    while p < 6:
+    while p < 7:
         M = DASEP(4,p,2)
         l.append(M.first())
         p += 1
@@ -133,7 +133,7 @@ def p42():
 def n2n1():
     n = 3
     l = []
-    while n < 6:
+    while n < 7:
         M = DASEP(n,2,n-1)
         l.append(M.first())
         n += 1
@@ -142,7 +142,7 @@ def n2n1():
 def n2n2():
     n = 4
     l = []
-    while n < 6:
+    while n < 7:
         M = DASEP(n,2,n-2)
         l.append(M.first())
         n += 1
