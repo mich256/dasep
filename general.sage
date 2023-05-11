@@ -1,4 +1,4 @@
-u, t = var('u, t')
+R.<u, t> = QQ['u, t']
 
 class DASEP:
     def __init__(self,lattice,notype,noparticles):
@@ -35,7 +35,9 @@ class DASEP:
 
     def first(self):
         S = self.steady()
-        return S[0][binomial(self.n,self.q)].rhs().denominator()
+        I = ideal(R(S[0][binomial(self.n,self.q)].rhs().denominator()))
+        J = ideal(R(u))
+        return I.saturation(J)[0].gens()[0]
 
 class State():
     def __init__(self,dasep,word):
@@ -67,29 +69,38 @@ class State():
         while i < len(w)-1:
             if int(w[i]) < int(w[i+1]):
                 if i != -1:
-                    s += t*State(self.dasep, w[0:i]+w[i+1]+w[i]+w[i+2:]).vrb
+                    s += t*var("x_{}".format(w[0:i]+w[i+1]+w[i]+w[i+2:]))
                 else:
-                    s += t*State(self.dasep, w[-1]+w[1:-1]+w[0]).vrb
+                    s += t*var("x_{}".format(w[-1]+w[1:-1]+w[0]))
             if int(w[i]) > int(w[i+1]):
                 if i != -1:
-                    s += State(self.dasep, w[0:i]+w[i+1]+w[i]+w[i+2:]).vrb
+                    s += var("x_{}".format(w[0:i]+w[i+1]+w[i]+w[i+2:]))
                 else:
-                    s += State(self.dasep, w[-1]+w[1:-1]+w[0]).vrb
+                    s += var("x_{}".format(w[-1]+w[1:-1]+w[0]))
             if int(w[i]) > 0 and int(w[i]) < self.dasep.p:
                 if i != -1:
-                    s += State(self.dasep, w[0:i]+str(int(w[i])+1)+w[i+1:]).vrb
+                    s += var("x_{}".format(w[0:i]+str(int(w[i])+1)+w[i+1:]))
                 else:
-                    s += State(self.dasep, w[0:i]+str(int(w[i])+1)).vrb
+                    s += var("x_{}".format(w[0:i]+str(int(w[i])+1)))
             if int(w[i]) > 1:
                 if i != -1:
-                    s += u*State(self.dasep, w[0:i]+str(int(w[i])-1)+w[i+1:]).vrb
+                    s += u*var("x_{}".format(w[0:i]+str(int(w[i])-1)+w[i+1:]))
                 else:
-                    s += u*State(self.dasep, w[0:i]+str(int(w[i])-1)).vrb
+                    s += u*var("x_{}".format(w[0:i]+str(int(w[i])-1)))
             i += 1
         return s
 
     def balance(self):
         return self.outdegree() == self.indegree()
+
+def n22():
+    n = 3
+    l = []
+    while n < 7:
+        M = DASEP(n,2,2)
+        l.append(M.first())
+        n += 1
+    return l
 
 
 def n23():
@@ -110,16 +121,6 @@ def n24():
         n += 1
     return l
 
-def n25():
-    n = 6
-    l = []
-    while n < 8:
-        M = DASEP(n,2,5)
-        l.append(M.first())
-        n += 1
-    return l
-    
-
 def p42():
     p = 2
     l = []
@@ -138,17 +139,22 @@ def n2n1():
         n += 1
     return l
 
+def n2n2():
+    n = 4
+    l = []
+    while n < 6:
+        M = DASEP(n,2,n-2)
+        l.append(M.first())
+        n += 1
+    return l
+
 def infFams1st(func):
-    with open("first.txt", "a") as f:
-        f.write("\n"+str(func)+"\n")
-        f.write("\n".join(str(item) for item in func()))
-
-def degOu(func):
-    with open("degU.txt","a") as f:
-        f.write('\n'+str(func)+'\n')
-        f.write('\n'.join(str(item.degree(u)) for item in func()))
-
-def degOt(func):
-    with open("degT.txt","a") as f:
-        f.write('\n'+str(func)+'\n')
-        f.write('\n'.join(str(item.degree(t)) for item in func()))
+    f1 = open("first.txt", "a")
+    f1.write("\n"+str(func))
+    du = open("degU.txt", "a")
+    du.write('\n'+str(func))
+    for item in func():
+        f1.write('\n'+str(item))
+        du.write('\n'+str(item.degree(u)))
+    f1.close()
+    du.close()
