@@ -96,7 +96,7 @@ class State():
 def n22():
     n = 3
     l = []
-    while n < 7:
+    while n < 10:
         M = DASEP(n,2,2)
         l.append(M.first())
         n += 1
@@ -121,6 +121,15 @@ def n24():
         n += 1
     return l
 
+def p32():
+    p = 2
+    l = []
+    while p < 9:
+        M = DASEP(3,p,2)
+        l.append(M.first())
+        p += 1
+    return l
+
 def p42():
     p = 2
     l = []
@@ -129,6 +138,9 @@ def p42():
         l.append(M.first())
         p += 1
     return l
+
+# 7 -> 19
+# 8 -> ?
 
 def n2n1():
     n = 3
