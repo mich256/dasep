@@ -133,7 +133,7 @@ def p32():
 def p42():
     p = 2
     l = []
-    while p < 7:
+    while p < 6:
         M = DASEP(4,p,2)
         l.append(M.first())
         p += 1
@@ -161,12 +161,34 @@ def n2n2():
     return l
 
 def infFams1st(func):
-    f1 = open("first.txt", "a")
-    f1.write("\n"+str(func))
-    du = open("degU.txt", "a")
-    du.write('\n'+str(func))
+    #f1 = open("first.txt", "a")
+    #f1.write("\n"+str(func))
+    #du = open("degU.txt", "a")
+    #du.write('\n'+str(func))
+    pf = open('parFun.txt', 'a')
+    pf.write('\n'+str(func))
+    cu = open('cofu.txt','a')
+    cu.write('\n'+str(func))
+    ct = open('constant.txt','a')
+    ct.write('\n'+str(func))
     for item in func():
-        f1.write('\n'+str(item))
-        du.write('\n'+str(item.degree(u)))
-    f1.close()
-    du.close()
+        d = item.degree(u)
+        #f1.write('\n'+str(item))
+        #du.write('\n'+str(u))
+        pf.write('\n'+str(item(t=1,u=1)))
+        cu.write('\n'+str(factor(item.coefficient(u^d))))
+        ct.write('\n'+str(item(t=0,u=0)))
+    #f1.close()
+    #du.close()
+    pf.close()
+    cu.close()
+    ct.close()
+
+def simplest():
+    f = open('n23.txt','a')
+    n = 4
+    while n < 7:
+        M = DASEP(n,2,3)
+        f.write(str(M.steady()))
+        n += 1
+    f.close()
