@@ -106,7 +106,7 @@ def n22():
 def n23():
     n = 4
     l = []
-    while n < 7:
+    while n < 8:
         M = DASEP(n,2,3)
         l.append(M.first())
         n += 1
@@ -115,7 +115,7 @@ def n23():
 def n24():
     n = 5
     l = []
-    while n < 7:
+    while n < 8:
         M = DASEP(n,2,4)
         l.append(M.first())
         n += 1
@@ -163,8 +163,8 @@ def n2n2():
 def infFams1st(func):
     #f1 = open("first.txt", "a")
     #f1.write("\n"+str(func))
-    #du = open("degU.txt", "a")
-    #du.write('\n'+str(func))
+    du = open("degU.txt", "a")
+    du.write('\n'+str(func))
     pf = open('parFun.txt', 'a')
     pf.write('\n'+str(func))
     cu = open('cofu.txt','a')
@@ -173,13 +173,13 @@ def infFams1st(func):
     ct.write('\n'+str(func))
     for item in func():
         d = item.degree(u)
-        #f1.write('\n'+str(item))
-        #du.write('\n'+str(u))
+        #f1.write('\n'+str(latex(item)))
+        du.write('\n'+str(d))
         pf.write('\n'+str(item(t=1,u=1)))
         cu.write('\n'+str(factor(item.coefficient(u^d))))
         ct.write('\n'+str(item(t=0,u=0)))
     #f1.close()
-    #du.close()
+    du.close()
     pf.close()
     cu.close()
     ct.close()
@@ -191,4 +191,13 @@ def simplest():
         M = DASEP(n,2,3)
         f.write(str(M.steady()))
         n += 1
+    f.close()
+
+def proof():
+    f = open('p32.txt','a')
+    p = 3
+    while p < 5:
+        M = DASEP(3,p,2)
+        f.write('\n'+str(M.steady()))
+        p += 1
     f.close()

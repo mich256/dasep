@@ -30,3 +30,25 @@
 2^9
 2^13
 2^19
+<function n23 at 0x7fe4c4474af0>
+2^2
+2^4
+2^6
+<function n24 at 0x7fe4c4475000>
+2^4 * 3^3
+2^11 * 3^7
+<function n23 at 0x7fe4c4474af0>
+2^2
+2^4
+2^6
+<function n23 at 0x7fe4b7332560>
+2^2
+2^4
+2^6
+2^10
+<function n23 at 0x7fe4b7332b90>
+2^2
+2^4
+2^6
+2^10
+<function n24 at 0x7fe4b7332560>
