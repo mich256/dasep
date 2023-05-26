@@ -30,3 +30,14 @@
 2^9
 2^13
 2^19
+<function p42 at 0x7fe118ee9e60>
+<function p32 at 0x7f4e420e0758>
+1
+1
+1
+<function n23 at 0x7f4e420e0668>
+1
+1
+1
+1
+1
