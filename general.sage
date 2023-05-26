@@ -173,7 +173,7 @@ def infFams1st(func):
     ct.write('\n'+str(func))
     for item in func():
         d = item.degree(u)
-        #f1.write('\n'+str(item))
+        #f1.write('\n'+str(latex(item)))
         du.write('\n'+str(d))
         pf.write('\n'+str(item(t=1,u=1)))
         cu.write('\n'+str(factor(item.coefficient(u^d))))
@@ -193,6 +193,7 @@ def simplest():
         n += 1
     f.close()
 
+<<<<<<< HEAD
 def bkakn22():
     f = open('positive.txt','a')
     k = 2
@@ -201,4 +202,13 @@ def bkakn22():
 	  N = DASEP(2*k,2,2).first()
 	  f.write(str(M-N))
 	  k += 1
+=======
+def proof():
+    f = open('p32.txt','a')
+    p = 3
+    while p < 5:
+        M = DASEP(3,p,2)
+        f.write('\n'+str(M.steady()))
+        p += 1
+>>>>>>> 95d8b6091d23010f42f610fd3267acdbfe336a02
     f.close()

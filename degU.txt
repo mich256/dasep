@@ -94,3 +94,10 @@
 0
 0
 0
+
+<function n23 at 0x7fe4b7332b90>
+4
+8
+12
+20
+<function n24 at 0x7fe4b7332560>
