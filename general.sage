@@ -35,9 +35,12 @@ class DASEP:
 
     def first(self):
         S = self.steady()
-        I = ideal(R(S[0][binomial(self.n,self.q)].rhs().denominator()))
-        J = ideal(R(u))
-        return I.saturation(J)[0].gens()[0]
+        x = binomial(self.n,self.q)
+        d = 1
+        while d == 1:
+            d = R(S[0][x].rhs().denominator())
+            x += 1
+        return d
 
 class State():
     def __init__(self,dasep,word):
@@ -192,17 +195,17 @@ def simplest():
         f.write(str(M.steady()))
         n += 1
     f.close()
-
-<<<<<<< HEAD
+    
 def bkakn22():
     f = open('positive.txt','a')
     k = 2
-    while k < 7:
-    	  M = DASEP(2*k-1,2,2).first()
-	  N = DASEP(2*k,2,2).first()
-	  f.write(str(M-N))
-	  k += 1
-=======
+    while k < 6:
+        M = DASEP(2*k-1,2,2).first()
+        N = DASEP(2*k,2,2).first()
+        f.write(str(M-N))
+        k += 1
+    f.close()
+          
 def proof():
     f = open('p32.txt','a')
     p = 3
@@ -210,5 +213,5 @@ def proof():
         M = DASEP(3,p,2)
         f.write('\n'+str(M.steady()))
         p += 1
->>>>>>> 95d8b6091d23010f42f610fd3267acdbfe336a02
     f.close()
+    
