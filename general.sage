@@ -40,7 +40,9 @@ class DASEP:
         while d == 1:
             d = R(S[0][x].rhs().denominator())
             x += 1
-        return d
+        I = R.ideal(d)
+        J = R.ideal(u)
+        return I.saturation(J)[0].gens()[0]
 
 class State():
     def __init__(self,dasep,word):
@@ -101,7 +103,10 @@ def n22():
     l = []
     while n < 10:
         M = DASEP(n,2,2)
-        l.append(M.first())
+        temp = M.first()
+        l.append(temp)
+        e = (n-1)//2
+        print((temp + (t+1)^e).factor())
         n += 1
     return l
 
