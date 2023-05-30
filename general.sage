@@ -101,13 +101,15 @@ class State():
 def n22():
     n = 3
     l = []
+    f = open('n22.txt','a')
     while n < 10:
         M = DASEP(n,2,2)
         temp = M.first()
         l.append(temp)
         e = (n-1)//2
-        print((temp + (t+1)^e).factor())
+        f.write(str(n)+(temp + (t+1)^e).factor())+'\n')
         n += 1
+    f.close()
     return l
 
 
