@@ -102,7 +102,7 @@ def n22():
     n = 3
     l = []
     f = open('n22.txt','a')
-    while n < 10:
+    while n < 12:
         M = DASEP(n,2,2)
         temp = M.first()
         l.append(temp)
