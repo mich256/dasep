@@ -35,11 +35,13 @@ class DASEP:
 
     def first(self):
         S = self.steady()
+	S = S[0]
         x = binomial(self.n,self.q)
         d = 1
-        while d == 1:
-            d = R(S[0][x].rhs().denominator())
+        while d == 1 and x < len(S):
+            d = R(S[x].rhs().denominator())
             x += 1
+	print(d)
         I = R.ideal(d)
         J = R.ideal(u)
         return I.saturation(J)[0].gens()[0]
@@ -107,7 +109,8 @@ def n22():
         temp = M.first()
         l.append(temp)
         e = (n-1)//2
-        f.write(str(n)+(temp + (t+1)^e).factor())+'\n')
+	print((temp + (t+1)^e))
+        f.write(str(n) +' '+ str((temp + (t+1)^e).factor())+'\n')
         n += 1
     f.close()
     return l
