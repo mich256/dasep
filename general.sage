@@ -100,14 +100,17 @@ class State():
         return self.outdegree() == self.indegree()
 
 def n22():
-    n = 3
+    n = 13
     l = []
     f = open('n22.txt','a')
-    while n < 12:
+    while n < 17:
         M = DASEP(n,2,2)
         temp = M.first()
         e = (n-1)//2
-        f.write(str(n) +' '+ str(latex((temp + (t+1)^e).factor()))+'\n')
+        f.write(str(n) + '\n' + str(temp) + '\n')
+        temp = temp + (t+1)^e
+        f.write(str(temp) +'\n')
+        f.write(str(temp.factor())+'\n')
         n += 1
     f.close()
     return l
