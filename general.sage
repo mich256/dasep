@@ -38,7 +38,7 @@ class DASEP:
         S = S[0]
         x = binomial(self.n,self.q)
         d = 1
-        while d == 1 and x < len(S):
+        while d == 1:
             d = R(S[x].rhs().denominator())
             x += 1
         I = R.ideal(d)
@@ -100,18 +100,19 @@ class State():
         return self.outdegree() == self.indegree()
 
 def n22():
-    n = 13
+    k = 2
     l = []
     f = open('n22.txt','a')
-    while n < 17:
-        M = DASEP(n,2,2)
-        temp = M.first()
-        e = (n-1)//2
-        f.write(str(n) + '\n' + str(temp) + '\n')
-        temp = temp + (t+1)^e
-        f.write(str(temp) +'\n')
-        f.write(str(temp.factor())+'\n')
-        n += 1
+    while k < 9:
+        M = DASEP(2*k-1,2,2)
+        N = DASEP(2*k,2,2)
+        temp = M.first() + (t+1)^(k-1)
+        #f.write(str(n) + '\n' + str(temp) + '\n')
+        #f.write(str(temp) +'\n')
+        f.write(str(k) + '\n' + str(temp.factor()) + '\n')
+        temp = N.first() + (t+1)^(k-1)
+        f.write(str(temp.factor()) + '\n')
+        k += 1
     f.close()
     return l
 
