@@ -226,3 +226,13 @@ def proof():
         p += 1
     f.close()
     
+
+def dif(S, index1, index2):
+    S = S[0]
+    p = S[index1]
+    v1 = p.lhs()
+    q = S[index2]
+    v2 = q.lhs()
+    p = p.rhs().numerator()
+    q = q.rhs().numerator()
+    return latex(v1 - v2 == factor(p-q))
