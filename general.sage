@@ -16,7 +16,10 @@ class DASEP:
                 for word in CyclicPermutations(par):
                     w1 = ''.join(map(str,word))
                     state = State(self,w1)
-                    eqt.append(state.balance())
+                    if word == [1]*self.q + [0]*(self.n-self.q):
+                        eqt.append(state.vrb == 1)
+                    else:
+                        eqt.append(state.balance())
                     vrb.append(state.vrb)
                     i = 1
                     while i < self.n:
@@ -37,13 +40,7 @@ class DASEP:
         S = self.steady()
         S = S[0]
         x = binomial(self.n,self.q)
-        d = 1
-        while d == 1:
-            d = R(S[x].rhs().denominator())
-            x += 1
-        I = R.ideal(d)
-        J = R.ideal(u)
-        return I.saturation(J)[0].gens()[0]
+        return  R(S[x].rhs().denominator())
 
 class State():
     def __init__(self,dasep,word):
@@ -116,64 +113,6 @@ def n22():
     f.close()
     return l
 
-
-def n23():
-    n = 4
-    l = []
-    while n < 9:
-        M = DASEP(n,2,3)
-        l.append(M.first())
-        n += 1
-    return l
-
-def n24():
-    n = 5
-    l = []
-    while n < 8:
-        M = DASEP(n,2,4)
-        l.append(M.first())
-        n += 1
-    return l
-
-def p32():
-    p = 7
-    l = []
-    while p < 10:
-        M = DASEP(3,p,2)
-        l.append(M.first())
-        p += 1
-    return l
-
-def p42():
-    p = 7
-    l = []
-    while p < 9:
-        M = DASEP(4,p,2)
-        l.append(M.first())
-        p += 1
-    return l
-
-# 7 -> 19
-# 8 -> ?
-
-def n2n1():
-    n = 3
-    l = []
-    while n < 7:
-        M = DASEP(n,2,n-1)
-        l.append(M.first())
-        n += 1
-    return l
-
-def n2n2():
-    n = 7
-    l = []
-    while n < 8:
-        M = DASEP(n,2,n-2)
-        l.append(M.first())
-        n += 1
-    return l
-
 def infFams1st(func):
     #f1 = open("first.txt", "a")
     #f1.write("\n"+str(func))
@@ -196,36 +135,7 @@ def infFams1st(func):
     du.close()
     pf.close()
     cu.close()
-    ct.close()
-
-def simplest():
-    f = open('n23.txt','a')
-    n = 4
-    while n < 7:
-        M = DASEP(n,2,3)
-        f.write(str(M.steady()))
-        n += 1
-    f.close()
-    
-def bkakn22():
-    f = open('positive.txt','a')
-    k = 2
-    while k < 6:
-        M = DASEP(2*k-1,2,2).first()
-        N = DASEP(2*k,2,2).first()
-        f.write(str(M-N))
-        k += 1
-    f.close()
-          
-def proof():
-    f = open('p32.txt','a')
-    p = 3
-    while p < 5:
-        M = DASEP(3,p,2)
-        f.write('\n'+str(M.steady()))
-        p += 1
-    f.close()
-    
+    ct.close()  
 
 def dif(S, index1, index2):
     S = S[0]
