@@ -96,46 +96,28 @@ class State():
     def balance(self):
         return self.outdegree() == self.indegree()
 
-def n22():
-    k = 2
-    l = []
-    f = open('n22.txt','a')
-    while k < 9:
-        M = DASEP(2*k-1,2,2)
-        N = DASEP(2*k,2,2)
-        temp = M.first() + (t+1)^(k-1)
-        #f.write(str(n) + '\n' + str(temp) + '\n')
-        #f.write(str(temp) +'\n')
-        f.write(str(k) + '\n' + str(temp.factor()) + '\n')
-        temp = N.first() + (t+1)^(k-1)
-        f.write(str(temp.factor()) + '\n')
-        k += 1
-    f.close()
-    return l
-
-def infFams1st(func):
-    #f1 = open("first.txt", "a")
-    #f1.write("\n"+str(func))
+def n23():
     du = open("degU.txt", "a")
-    du.write('\n'+str(func))
+    du.write('\n'+'n23')
     pf = open('parFun.txt', 'a')
-    pf.write('\n'+str(func))
+    pf.write('\n'+'n23')
     cu = open('cofu.txt','a')
-    cu.write('\n'+str(func))
+    cu.write('\n'+'n23')
     ct = open('constant.txt','a')
-    ct.write('\n'+str(func))
-    for item in func():
+    ct.write('\n'+'n23')
+    k = 4
+    while k < 8:
+        item = DASEP(k,2,3).first()
         d = item.degree(u)
-        #f1.write('\n'+str(latex(item)))
         du.write('\n'+str(d))
         pf.write('\n'+str(item(t=1,u=1)))
         cu.write('\n'+str(factor(item.coefficient(u^d))))
         ct.write('\n'+str(item(t=0,u=0)))
-    #f1.close()
+        k += 1
     du.close()
     pf.close()
     cu.close()
-    ct.close()  
+    ct.close()
 
 def dif(S, index1, index2):
     S = S[0]
