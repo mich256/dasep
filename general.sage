@@ -1,7 +1,7 @@
 R.<u, t> = QQ['u, t']
 
 class DASEP:
-    def __init__(self,lattice,notype,noparticles):
+    def __init__(self, lattice: int, notype: int, noparticles: int):
         self.n = lattice
         self.p = notype
         self.q = noparticles
@@ -43,7 +43,7 @@ class DASEP:
         return  R(S[x].rhs().denominator())
 
 class State():
-    def __init__(self,dasep,word):
+    def __init__(self, dasep: DASEP, word: str):
         self.vrb = var("x_{}".format(word))
         self.dasep = dasep
         self.word = word
@@ -127,4 +127,4 @@ def dif(S, index1, index2):
     v2 = q.lhs()
     p = p.rhs().numerator()
     q = q.rhs().numerator()
-    return latex(v1 - v2 == factor(p-q))
+    return v1 - v2 == factor(p-q)
