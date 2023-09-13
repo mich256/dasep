@@ -119,6 +119,75 @@ def n23():
     cu.close()
     ct.close()
 
+def n2n1():
+    du = open("degU.txt", "a")
+    du.write('\n'+'n2n1')
+    pf = open('parFun.txt', 'a')
+    pf.write('\n'+'n2n1')
+    cu = open('cofu.txt','a')
+    cu.write('\n'+'n2n1')
+    ct = open('constant.txt','a')
+    ct.write('\n'+'n2n1')
+    k = 3
+    while k < 8:
+        item = DASEP(k,2,k-1).first()
+        d = item.degree(u)
+        du.write('\n'+str(d))
+        pf.write('\n'+str(item(t=1,u=1)))
+        cu.write('\n'+str(factor(item.coefficient(u^d))))
+        ct.write('\n'+str(item(t=0,u=0)))
+        k += 1
+    du.close()
+    pf.close()
+    cu.close()
+    ct.close()
+
+def p32():
+    du = open("degU.txt", "a")
+    du.write('\n'+'3p2')
+    pf = open('parFun.txt', 'a')
+    pf.write('\n'+'3p2')
+    cu = open('cofu.txt','a')
+    cu.write('\n'+'3p2')
+    ct = open('constant.txt','a')
+    ct.write('\n'+'3p2')
+    k = 3
+    while k < 8:
+        item = DASEP(3,k,2).first()
+        d = item.degree(u)
+        du.write('\n'+str(d))
+        pf.write('\n'+str(item(t=1,u=1)))
+        cu.write('\n'+str(factor(item.coefficient(u^d))))
+        ct.write('\n'+str(item(t=0,u=0)))
+        k += 1
+    du.close()
+    pf.close()
+    cu.close()
+    ct.close()
+
+def n24():
+    du = open("degU.txt", "a")
+    du.write('\n'+'n24')
+    pf = open('parFun.txt', 'a')
+    pf.write('\n'+'n24')
+    cu = open('cofu.txt','a')
+    cu.write('\n'+'n24')
+    ct = open('constant.txt','a')
+    ct.write('\n'+'n24')
+    k = 5
+    while k < 8:
+        item = DASEP(k,2,4).first()
+        d = item.degree(u)
+        du.write('\n'+str(d))
+        pf.write('\n'+str(item(t=1,u=1)))
+        cu.write('\n'+str(factor(item.coefficient(u^d))))
+        ct.write('\n'+str(item(t=0,u=0)))
+        k += 1
+    du.close()
+    pf.close()
+    cu.close()
+    ct.close()
+
 def dif(S, index1, index2):
     S = S[0]
     p = S[index1]
