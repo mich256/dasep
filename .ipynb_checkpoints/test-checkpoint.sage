@@ -1,7 +1,7 @@
 load('general.sage')
 
 def d22():
-    for i in range(6,15,2):
+    for i in range(3,10):
         M = DASEP(i,2,2)
         t = binomial(i,2)
         S = M.steady()[0]

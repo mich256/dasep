@@ -36,6 +36,10 @@ class ASEP:
         eqt, vrb = self.system()
         return solve(eqt, vrb)
 
+    def first(self):
+        S = self.steady()[0]
+        return S[len(self.partition)].rhs().denominator()
+
 class State():
     def __init__(self, word: str):
         self.vrb = var('x_{}'.format(word))
