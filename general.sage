@@ -5,6 +5,8 @@ class DASEP:
         self.n = lattice
         self.p = notype
         self.q = noparticles
+        self.S = {}
+        self.f = 0
 
     def system(self):
         eqt = []
@@ -34,13 +36,16 @@ class DASEP:
 
     def steady(self):
         eqt, vrb = self.system()
-        return solve(eqt,vrb)
+        return solve(eqt,vrb)[0]
 
     def first(self):
-        S = self.steady()
-        S = S[0]
-        x = binomial(self.n,self.q)
-        return  R(S[x].rhs().denominator())
+        foo = self.steady()
+        self.f = foo[binomial(self.n,self.q)].rhs().denominator()
+        for i in foo:
+            v = str(i.lhs())[2:]
+            st = i.rhs()*self.f
+            self.S[v] = st
+        return self.f
 
 class State():
     def __init__(self, dasep: DASEP, word: str):
