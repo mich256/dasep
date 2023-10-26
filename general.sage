@@ -40,10 +40,11 @@ class DASEP:
 
     def first(self):
         foo = self.steady()
-        self.f = foo[binomial(self.n,self.q)].rhs().denominator()
+        self.f = R(foo[binomial(self.n,self.q)].rhs().denominator())
         for i in foo:
             v = str(i.lhs())[2:]
-            st = i.rhs()*self.f
+            self.f = lcm(self.f, R(i.rhs().denominator()))
+            st = R(i.rhs().numerator())*(self.f//R(i.rhs().denominator()))
             self.S[v] = st
         return self.f
 
