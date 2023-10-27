@@ -10,7 +10,7 @@ def d22():
             print(word, factor(M.S[word]-u*f))
             
 def d23():
-    for i in range(4,6):
+    for i in range(4,5):
         M = DASEP(i,2,3)
         f = M.first()
         par = [2,1,1]+[0]*(i-3)
@@ -59,10 +59,11 @@ def d32():
             temp = M.S[word]-u**3*f
             print(word, (lambda: factor(temp) if temp != 0 else None)())
 
-def palindrom():
-        M = DASEP(4,3,3)
+def eulerian():
+    for i in range(3,7):
+        M = DASEP(i,2,i-1)
         f = M.first()
-        par = [3,2,1,0]
+        par = [0,2]+[1]*(i-2)
         for word in CyclicPermutations(par):
             word = ''.join(map(str,word))
-            print(word, factor(M.S[word]-u**3*f))
+            print(word, factor(M.S[word]-u*f))
