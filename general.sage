@@ -1,4 +1,4 @@
-R.<u, t> = QQ['u, t']
+R.<u, t, y> = QQ['u, t, y']
 
 class DASEP:
     def __init__(self, lattice: int, notype: int, noparticles: int):
@@ -67,7 +67,7 @@ class State():
             if w[i] > 0 and w[i] < self.dasep.p:
                 s += u
             if w[i] > 1:
-                s += 1
+                s += y
             i += 1
         return s*self.vrb
 
@@ -88,9 +88,9 @@ class State():
                     s += var("x_{}".format(w[-1]+w[1:-1]+w[0]))
             if int(w[i]) > 0 and int(w[i]) < self.dasep.p:
                 if i != -1:
-                    s += var("x_{}".format(w[0:i]+str(int(w[i])+1)+w[i+1:]))
+                    s += y*var("x_{}".format(w[0:i]+str(int(w[i])+1)+w[i+1:]))
                 else:
-                    s += var("x_{}".format(w[0:i]+str(int(w[i])+1)))
+                    s += y*var("x_{}".format(w[0:i]+str(int(w[i])+1)))
             if int(w[i]) > 1:
                 if i != -1:
                     s += u*var("x_{}".format(w[0:i]+str(int(w[i])-1)+w[i+1:]))
