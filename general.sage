@@ -101,7 +101,17 @@ class State():
 
     def balance(self):
         return self.outdegree() == self.indegree()
-
+def n22():
+    deform = open('deform.txt','a')
+    deform.write('\n'+'n22')
+    k = 3
+    while k < 8:
+       item = DASEP(k,2,2).first()
+       item = item//y^2
+       deform.write('\n'+str(factor(item(u=0,y=0))))
+       k+=1
+    deform.close()
+    
 def n23():
     #du = open("degU.txt", "a")
     #du.write('\n'+'n23')
