@@ -5,7 +5,6 @@ class DASEP:
         self.n = lattice
         self.p = notype
         self.q = noparticles
-        self.S = {}
         self.f = 0
 
     def system(self):
