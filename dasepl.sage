@@ -1,4 +1,6 @@
-R.<u, t, y> = QQ['u, t, y']
+R.<u, y> = QQ['u, y']
+
+t = 1
 
 class DASEPL:
     def __init__(self, lattice: int, notype: int, noparticles: int):
