@@ -1,20 +1,22 @@
-R.<u, y> = QQ['u, y']
+R.<u,t> = QQ['u,t']
 
-t = 1
+# symmetric version, stationary measure is product geometric
 
 class DASEPL:
-    def __init__(self, lattice: int, notype: int, noparticles: int):
+    def __init__(self, lattice: int, notype: int):
         self.n = lattice
         self.p = notype
-        self.q = noparticles
+        #TODO vars (u_1, u_2,..., u_n)
+        #self.variables = vars()
 
     def system(self):
         eqt = []
         vrb = []
-        ab = self.q
-        while ab < self.p * self.q + 1:
-            for par in Partitions(ab, length=self.q, max_part=self.p):
-                par = par + [0]*(self.n-self.q)
+        #TODO update the way it iterates
+        ab = 0
+        while ab < self.p * self.n:
+            for par in Partitions(ab, max_part=self.p):
+                par = par + [0] * (self.n-len(par))
                 for word in Arrangements(par, self.n):
                     w = ''.join(map(str, word))
                     v = var("x_{}".format(w))
@@ -28,15 +30,15 @@ class DASEPL:
                         if word[i] < word[i+1]:
                             out += 1
                             ind += t * var("x_{}".format(w[0:i]+w[i+1]+w[i]+w[i+2:]))
-                        if word[i] > 0 and word[i] < self.p:
+                        if word[i] < self.p:
                             out += u
-                            ind += y * var("x_{}".format(w[0:i]+str(word[i]+1)+w[i+1:]))
+                            ind += var("x_{}".format(w[0:i]+str(word[i]+1)+w[i+1:]))
                         if word[i] > 1:
-                            out += y
+                            out += 1
                             ind += u * var("x_{}".format(w[0:i]+str(word[i]-1)+w[i+1:]))
 
                     eqt.append(out * v == ind)
-                    if list(word) == [1]*self.q + [0]*(self.n-self.q):
+                    if ab == 0:
                         eqt.append(v == 1)
             ab += 1
         return eqt, vrb

@@ -1,6 +1,4 @@
-R.<u,t,y> = QQ['u,t,y']
-
-#reservoir at each vertex, vertex binary labeled
+R.<u,t> = QQ['u,t']
 
 class ASEPRSV():
 	def __init__(self, size: int):
@@ -10,7 +8,7 @@ class ASEPRSV():
 		eqt = []
 		vrb = []
 
-		for j in range(2** self.n):
+		for j in range(2 ** self.n):
 			lhs = 0
 			rhs = 0
 			w = f'{j:0{self.n}b}'
@@ -19,10 +17,10 @@ class ASEPRSV():
 			for i in range(self.n):
 				if w[i] == '0':
 					lhs += u
-					rhs += y * var("x_{}".format(w[0:i]+str(int(w[i])|1)+w[i+1:]))
+					rhs += var("x_{}".format(w[0:i]+'1'+w[i+1:]))
 				if w[i] == '1':
-					lhs += y
-					rhs += u * var("x_{}".format(w[0:i]+str(int(w[i])&0)+w[i+1:]))
+					lhs += 1
+					rhs += u * var("x_{}".format(w[0:i]+'0'+w[i+1:]))
 				if i != self.n-1:
 					if w[i] < w[i+1]:
 						lhs += t
